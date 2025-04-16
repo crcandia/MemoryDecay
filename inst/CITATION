@@ -1,0 +1,18 @@
+citHeader("To cite the MemoryDecay R package in publications, please use:")
+
+bibentry("Manual",
+         title = "MemoryDecay: Fitting Collective Memory Decay Curves",
+         author = person("Cristian", "Candia", 
+                         email = "crcandiav@gmail.com",
+                         role = c("aut", "cre"),
+                         comment = c(ORCID = "https://orcid.org/0000-0002-9654-543X")),
+         year = "2025",
+         note = "R package version 0.1.0")
+
+citFooter("This package is based on the following scientific works. When appropriate, please cite them as well:\n\n",
+          "Candia, C., Jara-Figueroa, C., Rodriguez-Sickert, C., Barabási, A.-L., & Hidalgo, C. A. (2019). ",
+          "The universal decay of collective memory and attention. *Nature Human Behaviour*, 3(1), 82–91. ",
+          "< https://doi.org/10.1038/s41562-018-0474-5 >\n\n",
+          
+          "Candia, C., & Uzzi, B. (2021). Quantifying the selective forgetting and integration of ideas in science and technology. ",
+          "*American Psychologist*, 76(6), 1067–1083. < https://doi.org/10.1037/amp0000863 >")

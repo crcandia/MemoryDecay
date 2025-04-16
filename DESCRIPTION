@@ -1,0 +1,50 @@
+Package: MemoryDecay
+Title: Fitting Collective Memory Decay Curves
+Version: 0.1.0
+Authors@R: 
+    person(given = "Cristian", 
+           family = "Candia", 
+           email = "crcandiav@gmail.com", 
+           role = c("aut", "cre"), 
+           comment = c(ORCID = "0000-0002-9654-543X"))
+Author: Cristian Candia [aut, cre]
+Maintainer: Cristian Candia <crcandiav@gmail.com>
+Description: Provides functions to fit and visualize forgetting curves using 
+ nonlinear least squares (via nlsLM), LOESS smoothing, and generalized 
+ additive models (GAM). Supports biexponential, exponential, and log-normal 
+ modulated power-law decay forms. Includes tools for grouped and stratified 
+ model fitting, critical time estimation, and model comparison using AIC, BIC, 
+ and pseudo-R². Offers publication-ready plotting functions for raw, smoothed, 
+ and fitted data. Designed for analyzing collective memory and attention decay 
+ in cross-sectional, time-series, and survey-based datasets. The package is 
+ grounded in recent research on collective memory dynamics. If you use this 
+ package, please cite: Candia et al. (2019) <doi:10.1038/s41562-018-0474-5>; 
+ Candia & Uzzi (2021) <doi:10.1037/amp0000863>.
+Depends: 
+    R (>= 4.0.0)
+Imports:
+    dplyr,
+    ggplot2,
+    ggtext,
+    grDevices,
+    gridExtra,
+    magrittr,
+    mgcv,
+    minpack.lm,
+    purrr,
+    reshape2,
+    rlang,
+    scales,
+    stats,
+    stringi,
+    stringr,
+    tibble,
+    tidyr
+Suggests:
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.2

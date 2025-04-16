@@ -1,0 +1,49 @@
+#' @title Anonymized Cross-Cultural Icon Recall Survey
+#'
+#' @description
+#' \code{survey_data} is an anonymized dataset from a cross-cultural survey 
+#' investigating the accuracy and depth of respondents' recall of prominent 
+#' historical and cultural figures. All sensitive details have been masked, 
+#' ensuring participant and icon anonymity.
+#'
+#' @details
+#' The survey was administered online across multiple world regions, featuring 
+#' participants who answered questions on various iconic historical or cultural 
+#' figures. The data has been approved for release under institutional ethics 
+#' (IRB) protocols to protect personally identifiable information (PII). 
+#' Only non-sensitive attributes are included in this dataset. 
+#'
+#' The primary goals of the survey were to:
+#' \enumerate{
+#'   \item Measure the extent of familiarity with globally recognized icons,
+#'   \item Examine potential geographic or demographic biases in icon recall, and
+#'   \item Assess how accurately participants recalled key details about these icons.
+#' }
+#'
+#' This dataset contains \strong{5 columns} and \emph{n} observations (rows). 
+#' The variables included are described below.
+#'
+#' @format A data frame with the following columns:
+#' \describe{
+#'   \item{\code{entity_id}}{An anonymous identifier for each cultural icon (e.g., "ID1").}
+#'   \item{\code{age_metric}}{A numeric measure approximating the historical or temporal 
+#'       context of the icon.}
+#'   \item{\code{location_flag}}{A binary indicator (0/1) indicating whether the respondent 
+#'       resides in the same region as the icon.}
+#'   \item{\code{performance_score}}{A numeric score reflecting how accurately participants 
+#'       recalled details about the icon.}
+#'   \item{\code{reply_count}}{The number of relevant responses or mentions in the survey.}
+#' }
+#'
+#' @usage
+#' data(survey_data)
+#'
+#' @examples
+#' # Load the dataset
+#' data(survey_data)
+#' 
+#' # Preview the first few rows
+#' head(survey_data)
+#'
+#' @keywords datasets
+"survey_data"

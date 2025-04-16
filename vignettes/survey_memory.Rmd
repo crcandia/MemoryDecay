@@ -1,0 +1,119 @@
+---
+title: "Survey Data Workflow in MemoryDecay"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Survey Data Workflow in MemoryDecay}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Overview
+
+This vignette demonstrates how to analyze noisy memory data collected from surveys using the `MemoryDecay` package. The pipeline includes data cleaning, smoothing using LOESS, fitting a biexponential forgetting curve, and producing high-quality visualizations.
+
+---
+
+## 1. Load Required Package and Example Data
+
+```r
+library(MemoryDecay)
+
+# Load example dataset on recall of historical figures
+data("survey_data")
+```
+
+---
+
+## 2. Clean and Filter the Survey Data
+
+We remove low-response entities and prepare the dataset for age-based modeling.
+
+```r
+survey_data_proc <- process_data(
+  data = survey_data,
+  id_col = "entity_id",
+  age_var = "age_metric",
+  group_var = "location_flag",
+  replies_col = "reply_count",
+  quantile = 1,      # No stratification
+  percentile = 0,    # No outlier removal
+  filter_n = 1       # Keep all entries with at least 1 reply
+)
+```
+
+---
+
+## 3. Smooth the Age-Attention Relationship
+
+We apply LOESS smoothing to reduce noise across age bins for each location.
+
+```r
+time_filter_survey_data <- smooth_survey_decay(
+  survey_data_proc,
+  age_var = "age_metric",
+  response_var = "performance_score",
+  group_var = "location_flag",
+  filter_age = 150
+)
+```
+
+---
+
+## 4. Visualize Raw vs. Smoothed Data
+
+This step helps you see how LOESS smoothing improves the interpretability of patterns in memory decay.
+
+```r
+plot_raw_memory_decay(
+  raw_df = survey_data_proc,
+  aggregated_df = time_filter_survey_data,
+  age_var = "age_metric",
+  response_var_raw = "performance_score",
+  response_var_agg = "loess_correct",
+  group_var = "location_flag",
+  log_y = FALSE,
+  xlim_vals = c(30, 150),
+  ylim_vals = c(0.3, 0.75)
+)
+```
+
+---
+
+## 5. Fit Biexponential Forgetting Models
+
+We now fit separate forgetting curves per location using smoothed data.
+
+```r
+fitted_df <- fit_biexponential_model(
+  time_filter_survey_data,
+  age_var = "age_metric",
+  observed_col = "loess_correct",
+  group_var = "location_flag",
+  N_ref = 1,
+  weight_early_points = TRUE
+)
+```
+
+---
+
+## 6. Plot the Fitted Curves
+
+Finally, we generate a polished figure comparing observed and modeled attention across locations.
+
+```r
+plot_fitted_decay_for_publication(
+  fitted_df,
+  observed_col = "loess_correct",
+  fitted_col = "fitted_correct",
+  age_var = "age_metric",
+  group_var = "location_flag",
+  export_path = "./Figures/trivia"
+)
+```
+
+---
+
+## Conclusion
+
+This vignette illustrates how `MemoryDecay` can process and model collective recall data, highlighting group-level dynamics in forgetting. This workflow is particularly useful for social science studies on cultural memory, fame, and knowledge diffusion.
+```

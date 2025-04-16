@@ -1,0 +1,112 @@
+---
+title: "Cross-Sectional Data Example with MemoryDecay"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Cross-Sectional Data Example with MemoryDecay}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Overview
+
+This vignette demonstrates how to use the `MemoryDecay` package to fit and compare forgetting curves on cross-sectional data. The example uses the built-in dataset `cross_section_data`, which contains popularity values (e.g., Google Trends or citation counts) for individuals or entities over time.
+
+We will:
+
+1. Aggregate the data by age.
+2. Fit a biexponential memory decay model.
+3. Compare it with exponential and log-normal alternatives.
+4. Visualize all fitted models.
+
+---
+
+## 1. Load Libraries and Data
+
+```r
+library(MemoryDecay)
+library(dplyr)
+
+# Explore data
+head(cross_section_data)
+```
+
+---
+
+## 2. Aggregate by Age
+
+We compute the mean popularity per age to smooth out individual-level variation.
+
+```r
+cross_section_data_agg <- cross_section_data %>%
+  group_by(age) %>%
+  summarise(CurrentPopularity = mean(CurrentPopularity, na.rm = TRUE)) %>%
+  ungroup()
+```
+
+---
+
+## 3. Fit Biexponential Model
+
+We fit the default biexponential decay model to the aggregated data, emphasizing early points (useful for capturing fast initial decay).
+
+```r
+fitted_df <- fit_biexponential_model(
+  data = cross_section_data_agg,
+  age_var = "age",
+  observed_col = "CurrentPopularity",
+  weight_early_points = TRUE
+)
+```
+
+---
+
+## 4. Plot the Fitted Curve
+
+Visualize the model fit against the original data.
+
+```r
+plot_fitted_decay(
+  fitted_df,
+  observed_col = "CurrentPopularity",
+  fitted_col = "fitted_correct",
+  age_var = "age",
+  log_x = FALSE
+)
+```
+
+---
+
+## 5. Fit and Compare All Models
+
+We now fit all three models—biexponential, exponential, and log-normal—and compare their performance using AIC/BIC.
+
+```r
+all_models <- fit_all_models_log(
+  data = cross_section_data_agg,
+  age_var = "age",
+  observed_col = "CurrentPopularity",
+  weight_early_points = TRUE
+)
+
+all_models$model_comparison
+```
+
+---
+
+## 6. Plot All Models Together
+
+```r
+plot_all_models(
+  all_models,
+  age_var = "age",
+  observed_col = "CurrentPopularity",
+  log_y = TRUE
+)
+```
+
+---
+
+## Conclusion
+
+This example illustrates a basic workflow using `MemoryDecay` with cross-sectional data. The tools provided allow for quick comparisons of multiple forgetting models and produce high-quality visualizations for publications or reports.
+```

@@ -1,0 +1,45 @@
+---
+title: "MemoryDecay Tutorial Index"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{MemoryDecay Tutorial Index}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```r
+# Load the package
+library(MemoryDecay)
+```
+
+## Overview
+
+**MemoryDecay** is an R package for modeling and visualizing forgetting curves in collective memory. 
+It provides functions to process, smooth, and fit various decay models to memory data collected via surveys, historical records, or citation datasets.
+
+The package supports:
+- Biexponential decay models
+- Log-normal modulated power-laws
+- Classic exponential decay
+- Grouped and stratified model fitting
+- Publication-ready plots
+
+## Example Datasets
+
+The package includes three preloaded datasets:
+
+```r
+data("cross_section_data")
+data("survey_data")
+data("time_series_data")
+```
+
+You can explore each by calling `head()` on them or checking the vignettes.
+
+## Tutorials
+
+Check the full tutorials:
+- `vignette("survey_memory")`
+- `vignette("scientific_citations")`
+- `vignette("cross_section_popularity")`
