@@ -12,7 +12,7 @@ This package is grounded in recent research on collective memory dynamics, inclu
 MemoryDecay combines **robust statistical models**, **publication-ready plots**, and **modular functions** to support social scientists, data analysts, and computational researchers working with memory-related time data.
 
 
-### Core Features
+## Core Features
 
 - Fit **theoretical forgetting curves** to attention data using nonlinear least squares (NLS)
 - Support for **grouped** and **faceted** model fitting (e.g., country, attention level)
@@ -23,9 +23,9 @@ MemoryDecay combines **robust statistical models**, **publication-ready plots**,
 
 ---
 
-###  Models Implemented
+##  Models Implemented
 
-#### 1. Biexponential Decay (communicative + cultural memory)
+### 1. Biexponential Decay (communicative + cultural memory)
 
 $
 S(t) = N \left[ e^{-(p + r)t} + \frac{r}{p + r - q} \left( e^{-qt} - e^{-(p + r)t} \right) \right]
@@ -35,7 +35,7 @@ $
 - Includes **critical time $ t_c $** where both systems contribute equally
 - Log-transformed for better numerical stability
 
-#### 2. Exponential Decay (simple memory loss)
+### 2. Exponential Decay (simple memory loss)
 
 $
 S(t) = c \cdot e^{-q t}
@@ -43,7 +43,7 @@ $
 
 - Assumes memory or attention fades at a constant exponential rate
 
-#### 3. Log-normal Modulated Power Law
+### 3. Log-normal Modulated Power Law
 
 $
 S(t) = \exp(b) \cdot t^{b_1} \cdot \exp(-b_2 (\log t)^2)
@@ -54,7 +54,7 @@ $
 
 ---
 
-###  Main Functions
+##  Main Functions
 
 | Task | Function |
 |------|----------|
@@ -67,7 +67,7 @@ $
 
 ---
 
-###  Data Preprocessing
+##  Data Preprocessing
 
 MemoryDecay includes tools to process noisy **survey** and **time-series** data:
 
@@ -76,7 +76,7 @@ MemoryDecay includes tools to process noisy **survey** and **time-series** data:
 
 ---
 
-###  Built-in Datasets
+##  Built-in Datasets
 
 | Dataset | Description |
 |---------|-------------|
@@ -86,19 +86,19 @@ MemoryDecay includes tools to process noisy **survey** and **time-series** data:
 
 ---
 
-###  Visualization Utilities
+##  Visualization Utilities
 
-#### Compare observed and fitted curves
+### Compare observed and fitted curves
 ```r
 plot_fitted_decay(model_output)
 ```
 
-#### Compare all models per group
+### Compare all models per group
 ```r
 plot_all_models(model_outputs)
 ```
 
-#### Plot raw patterns
+### Plot raw patterns
 
 ```r
 plot_raw_memory_decay()
@@ -123,14 +123,14 @@ plot_raw_memory_decay(
 - Smart handling of missing or zero values for log-scale safety
 
 
-#### Compare model AIC/BIC scores
+### Compare model AIC/BIC scores
 ```r
 compare_model_fits(model_outputs$model_comparison, metric = "AIC")
 ```
 
 ---
 
-###  Use Cases
+##  Use Cases
 
 - **Collective memory decay** of historical or cultural figures
 - **Attention fade** in citation networks or digital content
@@ -140,7 +140,7 @@ compare_model_fits(model_outputs$model_comparison, metric = "AIC")
 
 ---
 
-## Installation
+# Installation
 
 ```r
 # Install development version from local source
@@ -152,7 +152,7 @@ install.packages("./MemoryDecay", repos = NULL, type = "source")
 
 ---
 
-## Example: Fitting a Forgetting Curve
+# Example: Fitting a Forgetting Curve
 
 ```r
 library(MemoryDecay)
@@ -213,7 +213,7 @@ plot_fitted_decay_for_publication(
 
 ---
 
-## Features
+# Features
 
 -  Curve fitting for time-series and survey-based memory
 -  Model comparison tools: AIC, BIC, pseudo-R²
@@ -223,13 +223,13 @@ plot_fitted_decay_for_publication(
 
 ---
 
-## License
+# License
 
 This package is released under the MIT license. See `LICENSE` file for details.
 
 ---
 
-## Citation
+# Citation
 
 If you use this package in academic work, please cite:
 
@@ -241,7 +241,7 @@ Perfecto, aquí tienes un bloque para agregar al final del README bajo una nueva
 
 ---
 
-## Learn More
+# Learn More
 
 To explore more use cases of the `MemoryDecay` package, see the following vignettes:
 
