@@ -240,6 +240,7 @@ This package is released under the MIT license. See `LICENSE` file for details.
 If you use this package in academic work, please cite:
 
 > Candia, C., & Uzzi, B. (2021). The memory of science: Using citation dynamics to understand memory decay. *American Psychologist*, 76(7), 1060–1075. https://doi.org/10.1037/amp0000863
+
 > Candia, C., Jara-Figueroa, C., Rodriguez-Sickert, C., Barabási, A.-L., & Hidalgo, C. A. (2019).  The universal decay of collective memory and attention. *Nature Human Behaviour*, 3(1), 82–91. https://doi.org/10.1038/s41562-018-0474-5
 
 ---
