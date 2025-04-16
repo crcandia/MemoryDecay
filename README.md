@@ -1,5 +1,7 @@
 # MemoryDecay <img src="man/figures/BLANCO.png" style="float: right; height: 110px; margin-top: -10px;" />
 
+#### Fitting Collective Memory Decay Curves
+
 `MemoryDecay` is an  R package provides an end-to-end framework for **modeling memory decay** and **collective attention** over time. It is especially useful for analyzing how cultural knowledge fades, how citations evolve, or how survey responses about historical figures decline as a function of time.
 
 This package is grounded in recent research on collective memory dynamics, including:
