@@ -21,8 +21,6 @@ MemoryDecay combines **robust statistical models**, **publication-ready plots**,
 - Computes **model fit metrics**: AIC, BIC, pseudo R², critical time
 - Provides **visual diagnostics and comparisons** for all models
 
----
-Aquí tienes la sección **“Models Implemented”** reescrita para que se vea correctamente en GitHub (`README.md`), sin depender de LaTeX ni MathJax:
 
 ---
 
