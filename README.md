@@ -1,17 +1,142 @@
-# MemoryDecay <img src="man/figures/BLANCO.png" align="right" height="120" />
+# MemoryDecay <img src="man/figures/BLANCO.png" style="float: right; height: 110px; margin-top: -10px;" />
 
-`MemoryDecay` is an R package for fitting and visualizing **forgetting curves** in the context of **collective memory, historical attention, and cultural recall**. It provides tools to model memory decay using:
-
-- **Biexponential**, **Exponential**, and **Log-Normal Modulated Power-Law** models.
-- Grouped and stratified model fitting.
-- Critical time estimation.
-- Model comparison (AIC/BIC).
-- High-quality plotting for publication.
+`MemoryDecay` is an  R package provides an end-to-end framework for **modeling memory decay** and **collective attention** over time. It is especially useful for analyzing how cultural knowledge fades, how citations evolve, or how survey responses about historical figures decline as a function of time.
 
 This package is grounded in recent research on collective memory dynamics, including:
 
 - Candia et al. (2019) *Nature Human Behaviour* [doi:10.1038/s41562-018-0474-5](https://doi.org/10.1038/s41562-018-0474-5)  
 - Candia & Uzzi (2021) *American Psychologist* [doi:10.1037/amp0000863](https://doi.org/10.1037/amp0000863)
+
+---
+
+MemoryDecay combines **robust statistical models**, **publication-ready plots**, and **modular functions** to support social scientists, data analysts, and computational researchers working with memory-related time data.
+
+
+### Core Features
+
+- Fit **theoretical forgetting curves** to attention data using nonlinear least squares (NLS)
+- Support for **grouped** and **faceted** model fitting (e.g., country, attention level)
+- Works on **cross-sectional**, **survey-based**, and **time-series** data
+- Supports **early decay weighting** to emphasize short-term memory loss
+- Computes **model fit metrics**: AIC, BIC, pseudo R², critical time
+- Provides **visual diagnostics and comparisons** for all models
+
+---
+
+###  Models Implemented
+
+#### 1. Biexponential Decay (communicative + cultural memory)
+
+$
+S(t) = N \left[ e^{-(p + r)t} + \frac{r}{p + r - q} \left( e^{-qt} - e^{-(p + r)t} \right) \right]
+$
+
+- Models **dual systems** of memory: fast-decaying communicative and slow-decaying cultural
+- Includes **critical time $ t_c $** where both systems contribute equally
+- Log-transformed for better numerical stability
+
+#### 2. Exponential Decay (simple memory loss)
+
+$
+S(t) = c \cdot e^{-q t}
+$
+
+- Assumes memory or attention fades at a constant exponential rate
+
+#### 3. Log-normal Modulated Power Law
+
+$
+S(t) = \exp(b) \cdot t^{b_1} \cdot \exp(-b_2 (\log t)^2)
+$
+
+- Captures **initial attention bursts** and **long-tail decay**
+- Common in **viral media**, **citations**, and **digital traces**
+
+---
+
+###  Main Functions
+
+| Task | Function |
+|------|----------|
+| Fit models (all) | `fit_all_models_log()` |
+| Individual fits | `fit_biexponential_model()`, `fit_exponential_log_model()`, `fit_lognormal_log_model()` |
+| Compute critical time | `add_critical_time()` |
+| Visualize raw vs smooth | `plot_raw_memory_decay()` |
+| Compare all models | `plot_all_models()`, `compare_model_fits()` |
+| High-quality export | `plot_fitted_decay_for_publication()` |
+
+---
+
+###  Data Preprocessing
+
+MemoryDecay includes tools to process noisy **survey** and **time-series** data:
+
+- `smooth_survey_decay()`: Smooths memory survey data using **LOESS** and **GAM**. Supports up to two grouping variables (`group_var`, `group_var2`) and returns raw, mean, and smoothed responses.
+- `process_time_series_bins()`: Pipeline for turning **citation time series** into grouped decay bins via **log-space binning**, controlling for **preferential attachment**.
+
+---
+
+###  Built-in Datasets
+
+| Dataset | Description |
+|---------|-------------|
+| `cross_section_data` | Popularity of songs on Billboard as of Oct 2016 with age and controls |
+| `survey_data` | Cross-cultural memory survey of historical/cultural icons with recall accuracy, geographic match, and demographics |
+| `time_series_data` | Citation time series from 1980–2003, with inflation-adjusted counts and semester resolution for anonymized scientific papers |
+
+---
+
+###  Visualization Utilities
+
+#### Compare observed and fitted curves
+```r
+plot_fitted_decay(model_output)
+```
+
+#### Compare all models per group
+```r
+plot_all_models(model_outputs)
+```
+
+#### Plot raw patterns
+
+```r
+plot_raw_memory_decay()
+```
+
+> Visualizes memory decay across **all data types** — survey, cross-sectional, and time-series — by plotting raw values, aggregated responses, or both.  
+> Compatible with output from smoothing functions (`smooth_survey_decay()`), model fitting (`fit_*`), or custom aggregates.
+
+```r
+plot_raw_memory_decay(
+  raw_df = survey_data,
+  aggregated_df = smooth_survey_decay(...),
+  age_var = "age_metric",
+  response_var_raw = "performance_score",
+  response_var_agg = "mean_response",
+  group_var = "location_flag"
+)
+```
+
+- Supports optional `group_var` and `group_var2` for color and faceting
+- Can apply log-scales and custom axis limits
+- Smart handling of missing or zero values for log-scale safety
+
+
+#### Compare model AIC/BIC scores
+```r
+compare_model_fits(model_outputs$model_comparison, metric = "AIC")
+```
+
+---
+
+###  Use Cases
+
+- **Collective memory decay** of historical or cultural figures
+- **Attention fade** in citation networks or digital content
+- Cross-country comparisons of **icon recall accuracy**
+- Analyzing **early vs late memory contributions**
+- Evaluating the **fit and interpretability** of theoretical decay models
 
 ---
 
