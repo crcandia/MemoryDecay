@@ -22,35 +22,43 @@ MemoryDecay combines **robust statistical models**, **publication-ready plots**,
 - Provides **visual diagnostics and comparisons** for all models
 
 ---
+Aquí tienes la sección **“Models Implemented”** reescrita para que se vea correctamente en GitHub (`README.md`), sin depender de LaTeX ni MathJax:
 
-##  Models Implemented
+---
 
-### 1. Biexponential Decay (communicative + cultural memory)
+###  Models Implemented
 
-$
-S(t) = N \left[ e^{-(p + r)t} + \frac{r}{p + r - q} \left( e^{-qt} - e^{-(p + r)t} \right) \right]
-$
+#### 1. Biexponential Decay (Communicative + Cultural Memory)
+
+```
+S(t) = N * [ exp(-(p + r) * t) + (r / (p + r - q)) * (exp(-q * t) - exp(-(p + r) * t)) ]
+```
 
 - Models **dual systems** of memory: fast-decaying communicative and slow-decaying cultural
-- Includes **critical time $ t_c $** where both systems contribute equally
+- Includes **critical time `t_c`** where both systems contribute equally
 - Log-transformed for better numerical stability
 
-### 2. Exponential Decay (simple memory loss)
+---
 
-$
-S(t) = c \cdot e^{-q t}
-$
+#### 2. Exponential Decay (Simple Memory Loss)
+
+```
+S(t) = c * exp(-q * t)
+```
 
 - Assumes memory or attention fades at a constant exponential rate
 
-### 3. Log-normal Modulated Power Law
+---
 
-$
-S(t) = \exp(b) \cdot t^{b_1} \cdot \exp(-b_2 (\log t)^2)
-$
+#### 3. Log-normal Modulated Power Law
+
+```
+S(t) = exp(b) * t^b1 * exp(-b2 * (log(t))^2)
+```
 
 - Captures **initial attention bursts** and **long-tail decay**
 - Common in **viral media**, **citations**, and **digital traces**
+
 
 ---
 
