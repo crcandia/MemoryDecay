@@ -1,4 +1,4 @@
-# MemoryDecay <img src="man/figures/logo.png" align="right" height="120" />
+# MemoryDecay <img src="man/figures/BLANCO.png" align="right" height="120" />
 
 `MemoryDecay` is an R package for fitting and visualizing **forgetting curves** in the context of **collective memory, historical attention, and cultural recall**. It provides tools to model memory decay using:
 
