@@ -1,4 +1,3 @@
-```markdown
 # MemoryDecay <img src="man/figures/logo.png" align="right" height="120" />
 
 `MemoryDecay` is an R package for fitting and visualizing **forgetting curves** in the context of **collective memory, historical attention, and cultural recall**. It provides tools to model memory decay using:
@@ -140,5 +139,4 @@ browseVignettes("MemoryDecay")
 
 >  Tip: If you're viewing this on GitHub and the links above don't work, try installing the package locally and running `devtools::build_vignettes()`.
 
-```
 
